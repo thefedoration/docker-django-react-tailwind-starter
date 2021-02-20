@@ -1,0 +1,17 @@
+
+version: '3'
+
+services:
+  db:
+    image: postgres
+    env_file: ./backend/app/.env
+  django:
+    build: ./backend
+    command: bash ./entrypoint.sh
+    volumes:
+      - ./backend:/home/docker/backend
+    env_file: ./backend/app/.env
+    ports:
+      - 8000:8000
+    depends_on:
+      - db

@@ -1,0 +1,11 @@
+curr_frontend
+.vscode
+
+*.pyc
+
+backend/.env
+backend/app/.env
+
+frontend/src/styles/tailwind.output.css
+frontend/.eslintcache
+frontend/node_modules
