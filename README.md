@@ -30,7 +30,11 @@ This is a starter project for a containerized django backend and a hot-reloading
 ## Other Handy Things
 - check out `makefile` to see the various commands available
 - `/health/` endpoint
-- comes with template `/api/v1/user-config/` API that frontend can ingest
+- comes with template `/api/v1/user-config/` Django Rest API that frontend can ingest
+
+## TODO
+- csrf token between frontend running on port 3000 and backend on port 8000. at the moment, we don't have ability for authenticated requests from the frontend. one way to solve this is to have port 8000 serve up the frontend bundle and that would give us a csrf token that can be sent with the request.
+- swap out django runservers for gunicorn
 
 ## Deploying
 
