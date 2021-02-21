@@ -33,14 +33,15 @@ This is a starter project for a containerized django backend and a hot-reloading
 - comes with template `/api/v1/user-config/` Django Rest API that frontend can ingest
 
 ## TODO
-- csrf token between frontend running on port 3000 and backend on port 8000. at the moment, we don't have ability for authenticated requests from the frontend. one way to solve this is to have port 8000 serve up the frontend bundle and that would give us a csrf token that can be sent with the request.
+- csrf token between frontend running on port 3000 and backend on port 8000. at the moment, we don't have ability for authenticated requests from the frontend. one way to solve this is to have port 8000 serve up the frontend bundle and that would give us a csrf token that can be sent with the request. Another way would be to add a JWT auth backend to 8000 and make an API that gives the token if the user is logged in, and have 3000 send that along with every request upon initial load.
 - swap out django runservers for gunicorn
 
 ## Deploying
 
 ### Render
-- WIP...
+render.com is pretty great, so I'll write up how to deploy there, but you 
 
 ### Application configuration
 - `frontend/src/utils/axios.js`, change `https://yourrenderappname.onrender.com`
+- `backend/app/settings` add the frontend urls to `CORS_ORIGIN_WHITELIST`
 
