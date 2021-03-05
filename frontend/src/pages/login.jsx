@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 // import {
 //   Switch,
 //   Route,
@@ -7,12 +7,61 @@ import React from "react"
 
 import LayoutAuth from "../components/layoutAuth";
 
+import { login } from "../utils/auth";
 
-const Login = ({history, location, match, authenticated}) => {
+
+const Login = ({history, location, match, authenticated }) => {
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	const submitForm = (e) => {
+		e.preventDefault();  // to not post to the current url
+		setLoading(true);
+
+		login(
+			e.target.elements['email'].value,
+			e.target.elements['password'].value,
+			(response) => {
+				setError(null);
+
+				// get the tokens, and set them to the session
+				const accessToken = response.data.access;
+				const refreshToken = response.data.refresh;
+
+				localStorage.setItem('accessToken', accessToken);
+				localStorage.setItem('refreshToken', refreshToken);
+
+				history.push('/');  // take user to the application
+				//setLoading(false);
+			},
+			(error, response) => {
+				setError(response && response.detail ? response.detail : 'could not log in');
+				setLoading(false);
+			}
+		)
+	}
 
   return (
     <LayoutAuth title="Sign in to your account">
-      <form className="space-y-6" action="#" method="POST">
+      <form className="space-y-6" action="#" onSubmit={submitForm}>
+
+      	{error ? (
+      		<div className="rounded-md bg-red-50 p-4">
+					  <div className="flex">
+					    <div className="flex-shrink-0">
+					      <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+					      </svg>
+					    </div>
+					    <div className="ml-3">
+					      <h3 className="text-sm font-medium text-red-800">
+					        {error}
+					      </h3>
+					    </div>
+					  </div>
+					</div>
+      	) : ''}
+
 	      <div>
 	        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
 	          Email address
@@ -32,12 +81,13 @@ const Login = ({history, location, match, authenticated}) => {
 	      </div>
 
 	      <div className="flex items-center justify-between">
+	      	{/*
 	        <div className="flex items-center">
 	          <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
 	          <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
 	            Remember me
 	          </label>
-	        </div>
+	        </div>*/}
 
 	        <div className="text-sm">
 	          <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -47,8 +97,10 @@ const Login = ({history, location, match, authenticated}) => {
 	      </div>
 
 	      <div>
-	        <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-	          Sign in
+	        <button type="submit" className="cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+	        	disabled={loading}
+	        >
+	          {loading ? 'Signing in...' : 'Sign in'}
 	        </button>
 	      </div>
 	    </form>

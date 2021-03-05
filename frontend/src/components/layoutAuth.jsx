@@ -9,7 +9,7 @@ const LayoutAuth = ({ children, title, subtitle }) => (
         { title }
       </h2>
       {subtitle ? (
-        <p className="mt-2 text-center text-sm text-gray-600 max-w">
+        <p className="mt-2 text-center text-sm text-white opacity-50 max-w">
           { subtitle }
         </p>
       ) : ''}

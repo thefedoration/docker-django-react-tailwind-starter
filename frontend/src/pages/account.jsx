@@ -1,4 +1,7 @@
-import React, { useState, useEffect }from "react"
+import React, { useState, useEffect } from "react"
+import {
+  Link
+} from "react-router-dom";
 
 import { getRequest } from '../utils/axios';
 
@@ -19,6 +22,8 @@ const Account = ({history, location, match, authenticated}) => {
   // state
   const [fetching, setFetching] = useState(false);
   const [userConfig, setUserConfig] = useState(null);
+
+  console.log("account page", authenticated)
 
   // effects
   useEffect(() => {
@@ -46,11 +51,11 @@ const Account = ({history, location, match, authenticated}) => {
       <div>
         <React.Fragment>
           {userConfig ? (
-            <div>logged in as {userConfig.identity.username}</div>
+            <div>Logged in as {userConfig.identity.username}</div>
           ) : authenticated && fetching ? (
-            <div>fetching user config....</div>
+            <div>Fetching user config....</div>
           ) : (
-            <div>not logged in yet</div>
+            <div>Not logged in yet. <Link className="underline" to="/login/">Log in</Link>.</div>
           )}
         </React.Fragment>
       </div>

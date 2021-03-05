@@ -157,6 +157,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# authentication
+AUTHENTICATION_BACKENDS = (
+    'app.auth.EmailBackend',
+)
+
+
 # django rest framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
