@@ -14,7 +14,7 @@ Doesn't have the CSRF token necessary to be able to identify the user.
 
 In order to have this work, we might need to have port 8000 serve up the bundle made by port 3000 and inject it with a csrf token
 */
-const Account = ({history, location, match}) => {
+const Account = ({history, location, match, authenticated}) => {
   
   // state
   const [fetching, setFetching] = useState(false);
@@ -22,8 +22,8 @@ const Account = ({history, location, match}) => {
 
   // effects
   useEffect(() => {
-    fetchUserConfig();
-  }, []); // Run when component loads
+    if (authenticated) fetchUserConfig();
+  }, []); // Run when component loads. fetch config if we're authenticated
 
 
   // actions
@@ -44,17 +44,15 @@ const Account = ({history, location, match}) => {
     <Layout title="Account">
       <div>Welcome to your account page</div>
       <div>
-        {fetching ? (
-          <div>fetching user config....</div>
-        ) : (
-          <React.Fragment>
-            {userConfig ? (
-              <div>logged in as {userConfig.identity.username}</div>
-            ) : (
-              <div>not logged in</div>
-            )}
-          </React.Fragment>
-        )}
+        <React.Fragment>
+          {userConfig ? (
+            <div>logged in as {userConfig.identity.username}</div>
+          ) : authenticated && fetching ? (
+            <div>fetching user config....</div>
+          ) : (
+            <div>not logged in yet</div>
+          )}
+        </React.Fragment>
       </div>
     </Layout>
   );
