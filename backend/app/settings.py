@@ -39,7 +39,6 @@ ALLOWED_HOSTS = [
 
 # if running frontend on separate render app, uncomment and update the domains
 CORS_ORIGIN_WHITELIST = [
-    # 'https://your-frontend-render-app-name.onrender.com',
     # 'https://yourdomain.com',
 ]
 
