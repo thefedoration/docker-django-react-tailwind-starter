@@ -19,14 +19,20 @@ const Header = ({history, location}) => {
                 <img className="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" />
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="ml-10 flex space-x-4 items-center">
                   {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                   <Link to="/" className={`px-3 py-2 rounded-md text-sm font-medium ${location.pathname==='/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}>
                     Home
                   </Link>
-                  <Link to="/account/" className={`px-3 py-2 rounded-md text-sm font-medium ${location.pathname==='/account/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}>
-                    Account
-                </Link>
+                  <Link to="/about/" className={`px-3 py-2 rounded-md text-sm font-medium ${location.pathname==='/about/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}>
+                    About
+                  </Link>
+                  <Link to="/account/" className={`px-3 py-2 flex rounded-md text-sm items-center font-medium ${location.pathname==='/account/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}>
+                    <svg className="h-4 w-4 mr-1 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <div>Account</div>
+                  </Link>
                 </div>
               </div>
             </div>

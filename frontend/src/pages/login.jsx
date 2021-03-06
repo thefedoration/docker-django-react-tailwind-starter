@@ -7,7 +7,8 @@ import React, { useState } from "react"
 
 import LayoutAuth from "../components/layoutAuth";
 
-import { login } from "../utils/auth";
+// import { login } from "../utils/auth";
+import { authService } from "../services/auth";
 
 
 const Login = ({history, location, match, authenticated }) => {
@@ -18,21 +19,13 @@ const Login = ({history, location, match, authenticated }) => {
 		e.preventDefault();  // to not post to the current url
 		setLoading(true);
 
-		login(
+		authService.login(
 			e.target.elements['email'].value,
 			e.target.elements['password'].value,
 			(response) => {
 				setError(null);
-
-				// get the tokens, and set them to the session
-				const accessToken = response.data.access;
-				const refreshToken = response.data.refresh;
-
-				localStorage.setItem('accessToken', accessToken);
-				localStorage.setItem('refreshToken', refreshToken);
-
 				history.push('/');  // take user to the application
-				//setLoading(false);
+				//setLoading(false);  // no need, wait for redirect
 			},
 			(error, response) => {
 				setError(response && response.detail ? response.detail : 'could not log in');
