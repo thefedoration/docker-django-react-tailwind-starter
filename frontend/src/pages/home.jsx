@@ -13,7 +13,9 @@ const Home = ({history, location, match, authenticated}) => {
       <h2>Welcome home!</h2>
       {authenticated ? (
       	<div>You are logged in an can visit your <Link to="/account/" className="underline">account page</Link>.</div>
-      ) : 'You are not logged in yet'}
+      ) : (
+      	<div>You are not logged in yet, and won't be able to access the account page</div>
+      )}
     </Layout>
   );
 }
