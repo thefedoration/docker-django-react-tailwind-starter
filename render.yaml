@@ -1,5 +1,5 @@
 databases:
- - name: Starter DB
+ - name: starter
    databaseName: starter
    user: starter
 
