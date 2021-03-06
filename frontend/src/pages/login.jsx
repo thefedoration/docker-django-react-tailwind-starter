@@ -7,7 +7,6 @@ import React, { useState } from "react"
 
 import LayoutAuth from "../components/layoutAuth";
 
-// import { login } from "../utils/auth";
 import { authService } from "../services/auth";
 
 

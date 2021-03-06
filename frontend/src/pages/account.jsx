@@ -17,8 +17,7 @@ const Account = ({history, location, match, authenticated, currentUser}) => {
         <React.Fragment>
           {authenticated && currentUser ? (
             <div>
-              Logged in as {currentUser.identity.username}.<br/>
-              <a className="underline cursor-pointer" onClick={() => {
+              Logged in as {currentUser.identity.username}. <a className="underline cursor-pointer" onClick={() => {
                 authService.logout();
                 history.push('/')
               }}>Log out</a>.

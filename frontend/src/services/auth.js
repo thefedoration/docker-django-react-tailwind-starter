@@ -5,6 +5,7 @@ import { postRequest, getRequest } from '../utils/axios';
 export const authService = {
     login,
     logout,
+    refresh,
     fetchUser,
 };
 
@@ -21,6 +22,28 @@ function login(username, password, onSuccess, onError) {
 
       // fetch user config
       fetchUser()
+
+      if (onSuccess){
+        onSuccess(response)
+      }
+    },
+    (error, response) => {
+      if (onError){
+        onError(error, response)
+      }
+    }
+  )
+}
+
+function refresh(onSuccess, onError) {
+  localStorage.setItem('refreshingAccessToken', true);
+  return postRequest(
+    '/api/token/refresh/',
+    {'refresh': localStorage.getItem('refreshToken')},
+    (response) => {
+      const accessToken = response.data.access;
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.removeItem('refreshingAccessToken');
 
       if (onSuccess){
         onSuccess(response)
