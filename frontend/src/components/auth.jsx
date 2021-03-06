@@ -3,7 +3,6 @@ import { useJwt } from "react-jwt";
 import { withRouter } from 'react-router-dom';
 
 import { authService } from "../services/auth";
-// import Layout from "../components/layout";
 
 // high level component, wraps most of app
 // passes auth params to children components
@@ -36,12 +35,11 @@ const Auth = ({children, match, location, history}) => {
   if (isExpired && localStorage.getItem('refreshToken') && !localStorage.getItem('refreshingAccessToken')){
     authService.refresh((response) => {
       // token succesfully refreshed. go ahead and set the state
-      // this will re-render this component and we won't be seeing the blank screen anymore
+      // this will re-render this component and authenticated props will be passed
       setAccessToken(localStorage.getItem('accessToken'))
     });
-    // while refreshing, we'll show a blank screen
-    // return <Layout />
-    return ''
+    // while refreshing, auth props are in blank state. you could show a loading state here if you wish
+    // return ''
   }
 
   return (
