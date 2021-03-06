@@ -62,10 +62,12 @@ render.com is pretty great, I like it because of:
 - Slack deploy + failure notifications
 - Cronjobs for periodic tasks
 - Redirect rules
+- Infrastructure as code
 
 ### To deploy on render
 - make a render.com account
 - `frontend/src/utils/axios.js`, change `https://yourrenderappname.onrender.com`
 - `backend/app/settings` add the frontend urls to `CORS_ORIGIN_WHITELIST`
 - check out the `render.yaml` and modify any of the service names as you see fit
+- go to the render dashboard, press "YAML" in the left sidebar, and import from YAML for this repo
 

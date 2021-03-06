@@ -35,8 +35,8 @@ services:
      - key: SECRET_KEY
        generateValue: true
 
-  - type: web
-    name: Starter Frontend
-    env: static
-    buildCommand: cd frontend && npm install && npm run-script build
-    staticPublishPath: ./frontend/build
+ - type: web
+   name: Starter Frontend
+   env: static
+   buildCommand: cd frontend && npm install && npm run-script build
+   staticPublishPath: ./frontend/build
