@@ -67,4 +67,5 @@ render.com is pretty great, I like it because of:
 - make a render.com account
 - `frontend/src/utils/axios.js`, change `https://yourrenderappname.onrender.com`
 - `backend/app/settings` add the frontend urls to `CORS_ORIGIN_WHITELIST`
+- check out the `render.yaml` and modify any of the service names as you see fit
 
