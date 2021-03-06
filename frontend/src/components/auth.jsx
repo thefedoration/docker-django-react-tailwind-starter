@@ -19,7 +19,7 @@ const Auth = ({children, match, location, history}) => {
   }
 
   // try getting token from local storage, update state if it's valid
-  const { decodedToken, isExpired } = useJwt(localStorage.getItem('accessToken'));
+  const { isExpired } = useJwt(localStorage.getItem('accessToken'));
 
   // set state if we have a valid token
   if (accessToken && !isExpired){

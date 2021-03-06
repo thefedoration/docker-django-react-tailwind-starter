@@ -9,7 +9,7 @@ const About = ({history, location, match}) => {
     <Layout title="About">
       This is a starter project for a web app.<br/>
       You can read a bit about
-      it <a className="underline" href="https://github.com/thefedoration/docker-django-react-tailwind-starter" target="_blank">here</a>.
+      it <a className="underline" href="https://github.com/thefedoration/docker-django-react-tailwind-starter" target="_blank" rel="noreferrer">here</a>.
     </Layout>
   );
 }

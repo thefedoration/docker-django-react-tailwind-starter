@@ -1,16 +1,20 @@
 # docker-django-react-tailwind-starter
-This is a starter project for a containerized django backend and a hot-reloading react frontend pre-installed with tailwindcss
+This is a starter project for a containerized django backend and a react frontend.
+
+
 
 ## Key Components
 - python3 docker container
 - postgres database
 - django 3.1.6
 - docker-compose
-- django rest framework
-- gunicorn web server (TODO, still django runserver right now)
+- django rest framework, with jwt authentication
+- gunicorn web server
 - react 16.7
 - react-router
-- tailwind css
+- tailwind css precompilation
+- jwt token authentication + refresh capabilities
+- authentication required + optional routes
 
 ## Quickstart
 
