@@ -34,6 +34,11 @@ services:
          property: user
      - key: SECRET_KEY
        generateValue: true
+     - key: RENDER_FRONTEND_SERVICE
+       fromService:
+         name: Starter Frontend
+         type: web
+         property: host
 
  - type: web
    name: Starter Frontend
@@ -45,7 +50,7 @@ services:
      source: /*
      destination: /index.html
    envVars:
-     - key: REACT_APP_API_HOST
+     - key: REACT_APP_RENDER_API_SERVICE
        fromService:
          name: Starter API
          type: web

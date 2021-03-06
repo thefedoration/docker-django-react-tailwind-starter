@@ -51,6 +51,11 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
+# add render frontend to allowed cors list
+RENDER_FRONTEND_SERVICE = os.environ.get('RENDER_FRONTEND_SERVICE')
+if RENDER_FRONTEND_SERVICE:
+   CORS_ORIGIN_WHITELIST.append("https://%s.onrender.com" % RENDER_FRONTEND_SERVICE)
+
 
 # Application definition
 
