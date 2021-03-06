@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.API_HOST : 'http://localhost:8000';
+const BASE_URL = process.env.NODE_ENV === 'production' ? `https://${process.env.REACT_APP_API_HOST}.onrender.com` : 'http://localhost:8000';
 const allowed401s = ['/api/token/']; // most 401s should take user to /login/. add valid 401s here
 
 

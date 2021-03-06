@@ -45,7 +45,7 @@ services:
      source: /*
      destination: /index.html
    envVars:
-     - key: API_HOST
+     - key: REACT_APP_API_HOST
        fromService:
          name: Starter API
          type: web
