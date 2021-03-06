@@ -68,6 +68,8 @@ render.com is pretty great, I like it because of:
 - make a render.com account
 - `frontend/src/utils/axios.js`, change `https://yourrenderappname.onrender.com`
 - `backend/app/settings` add the frontend urls to `CORS_ORIGIN_WHITELIST`
-- check out the `render.yaml` and modify any of the service names as you see fit
-- go to the render dashboard, press "YAML" in the left sidebar, and import from YAML for this repo
+- Check out the `render.yaml` and modify any of the service names as you see fit
+- Go to the render dashboard, press "YAML" in the left sidebar, and import from YAML for this repo
+- It should take a couple minutes to create everything, go check out the render dashboard to see the features render provides
+- The services created will show you the urls at which they are available, and you can set a custom domain on the frontend if you wish
 
