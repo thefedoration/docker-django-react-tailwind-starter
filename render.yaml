@@ -48,4 +48,5 @@ services:
      - key: API_HOST
        fromService:
          name: Starter API
+         type: web
          property: host
