@@ -45,6 +45,9 @@ function refresh(onSuccess, onError) {
       localStorage.setItem('accessToken', accessToken);
       localStorage.removeItem('refreshingAccessToken');
 
+      // fetch user config (good to do this periodically)
+      fetchUser()
+
       if (onSuccess){
         onSuccess(response)
       }

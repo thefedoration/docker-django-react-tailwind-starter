@@ -9,11 +9,8 @@ import { authService } from "../services/auth";
 // passes auth params to children components
 // upon state changes, re-assesses expiration of access token
 const Auth = ({children, match, location, history}) => {
-  // const [authenticated, setAuthenticated] = useState(false);
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken'));
-  // const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken'));
-  // const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('currentUser')));
-
+  
   // clean slate
   var authState = {
     'authenticated': false,

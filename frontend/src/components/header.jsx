@@ -4,7 +4,6 @@ import {
 } from "react-router-dom";
 
 import { withRouter } from "react-router";
-// import { getParamsFromUrl, toQueryString } from '../utils/urls';
 
 
 const Header = ({history, location}) => {
