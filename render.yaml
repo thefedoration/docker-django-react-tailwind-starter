@@ -6,7 +6,7 @@ databases:
 services:
  - type: web
    name: Starter API
-   env: python
+   env: docker
    dockerfilePath: ./backend/Dockerfile
    dockerContext: ./backend
    dockerCommand: ./entrypoint.sh
@@ -23,7 +23,7 @@ services:
      - key: DB_NAME
        fromDatabase:
          name: starter
-         property: name
+         property: database
      - key: DB_PASSWORD
        fromDatabase:
          name: starter
