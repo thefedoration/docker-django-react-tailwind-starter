@@ -44,3 +44,8 @@ services:
    - type: rewrite
      source: /*
      destination: /index.html
+   envVars:
+     - key: API_HOST
+       fromService:
+         name: Starter API
+         property: host

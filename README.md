@@ -72,4 +72,5 @@ render.com is pretty great, I like it because of:
 - Go to the render dashboard, press "YAML" in the left sidebar, and import from YAML for this repo
 - It should take a couple minutes to create everything, go check out the render dashboard to see the features render provides
 - The services created will show you the urls at which they are available, and you can set a custom domain on the frontend if you wish
+- to create a user, go to the API service and in `shell`, run `python manage.py createsuperuser`
 
