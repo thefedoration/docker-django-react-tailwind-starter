@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 from app import views
 
 urlpatterns = [
@@ -26,3 +28,6 @@ urlpatterns = [
     path(r'health/', views.health, name="health"),
     path(r'api/', include('api.urls'), name="api"),
 ]
+
+# add static file patterns (for admin site)
+urlpatterns += staticfiles_urlpatterns()
