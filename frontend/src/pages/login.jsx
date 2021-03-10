@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import LayoutAuth from "../components/layoutAuth";
 
 import { authService } from "../services/auth";
+import { getParameterByName } from "../utils/urls";
 
 
 const Login = ({history, location, match, authenticated }) => {
@@ -18,11 +19,16 @@ const Login = ({history, location, match, authenticated }) => {
 			e.target.elements['password'].value,
 			(response) => {
 				setError(null);
-				history.push('/');  // take user to the application
+				const next = getParameterByName('next', window.location);
+				if (next){
+					window.location = next;
+				} else {
+					history.push('/reddit/');  // take user to reddit homepage
+				}
 				//setLoading(false);  // no need, wait for redirect
 			},
 			(error, response) => {
-				setError(response && response.detail ? response.detail : 'could not log in');
+				setError(error && error.response && error.response.data.detail ? error.response.data.detail : 'could not log in');
 				setLoading(false);
 			}
 		)
@@ -84,7 +90,7 @@ const Login = ({history, location, match, authenticated }) => {
 	      </div>*/}
 
 	      <div>
-	        <button type="submit" className="cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+	        <button type="submit" className="cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-400 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 	        	disabled={loading}
 	        >
 	          {loading ? 'Signing in...' : 'Sign in'}

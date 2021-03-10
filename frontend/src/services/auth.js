@@ -1,12 +1,13 @@
-
+import { useJwt, isExpired } from "react-jwt";
 import { postRequest, getRequest } from '../utils/axios';
+import axios from 'axios';
 
 
 export const authService = {
     login,
     logout,
-    refresh,
     fetchUser,
+    tokenNeedsRefresh,
 };
 
 function login(username, password, onSuccess, onError) {
@@ -24,41 +25,21 @@ function login(username, password, onSuccess, onError) {
       fetchUser()
 
       if (onSuccess){
-        onSuccess(response)
+        return onSuccess(response)
       }
     },
     (error, response) => {
       if (onError){
-        onError(error, response)
+        return onError(error, response)
       }
     }
   )
 }
 
-function refresh(onSuccess, onError) {
-  localStorage.setItem('refreshingAccessToken', true);
-  return postRequest(
-    '/api/token/refresh/',
-    {'refresh': localStorage.getItem('refreshToken')},
-    (response) => {
-      const accessToken = response.data.access;
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.removeItem('refreshingAccessToken');
-
-      // fetch user config (good to do this periodically)
-      fetchUser()
-
-      if (onSuccess){
-        onSuccess(response)
-      }
-    },
-    (error, response) => {
-      if (onError){
-        onError(error, response)
-      }
-    }
-  )
+function tokenNeedsRefresh(token) {
+  return isExpired(token);
 }
+
 
 function fetchUser(onSuccess, onError) {
   return getRequest(

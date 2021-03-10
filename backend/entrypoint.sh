@@ -6,6 +6,9 @@ set -o errexit
 # migrations
 python manage.py migrate
 
+# static files
+python manage.py collectstatic --noinput
+
 # start server
 # python manage.py runserver 0.0.0.0:8000
 gunicorn --config gunicorn.conf --bind 0.0.0.0:${PORT:-8000} wsgi:application --workers 3

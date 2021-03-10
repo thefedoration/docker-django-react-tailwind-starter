@@ -31,17 +31,6 @@ const Auth = ({children, match, location, history}) => {
     })
   }
 
-  // if auth token expired but we have a refresh, go refresh the access token
-  if (isExpired && localStorage.getItem('refreshToken') && !localStorage.getItem('refreshingAccessToken')){
-    authService.refresh((response) => {
-      // token succesfully refreshed. go ahead and set the state
-      // this will re-render this component and authenticated props will be passed
-      setAccessToken(localStorage.getItem('accessToken'))
-    });
-    // while refreshing, auth props are in blank state. you could show a loading state here if you wish
-    // return ''
-  }
-
   return (
     <React.Fragment>
       {children({
