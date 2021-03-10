@@ -23,7 +23,7 @@ const Login = ({history, location, match, authenticated }) => {
 				if (next){
 					window.location = next;
 				} else {
-					history.push('/reddit/');  // take user to reddit homepage
+					window.location = '/account/';  // take user to homepage
 				}
 				//setLoading(false);  // no need, wait for redirect
 			},
