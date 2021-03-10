@@ -5,7 +5,10 @@ curr_frontend
 
 backend/.env
 backend/app/.env
+backend/static/
 
 frontend/src/styles/tailwind.output.css
 frontend/.eslintcache
 frontend/node_modules
+
+.DS_Store
